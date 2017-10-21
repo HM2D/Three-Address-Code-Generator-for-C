@@ -1,0 +1,7 @@
+  line IF '(' C { labels = Label(); $4.arg2 = labels; labels = Label(); labels = $4.arg1; printf("IfZ %s Goto %s \n ",$4.result,$4.arg2);}  ')''{' exp {labels =Label(); $8.arg1= labels; printf("goto %s\n",$8.arg1);} '}' ELSE '{' {printf("%s:\n", $4.arg2);} exp '}' {printf("%s:\n",$8.arg1);}
+     |   IF '(' C { labels = Label(); $3.arg2 = labels; labels = Label(); labels = $3.arg1; printf("IfZ %s Goto %s \n ",$3.result,$3.arg2);}  ')''{' exp {labels =Label(); $7.arg1= labels; printf("goto %s\n",$7.arg1);} '}' ELSE '{' {printf("%s:\n", $3.arg2);} exp '}' {printf("%s:\n",$7.arg1);}
+     
+
+     | exp '-' '-'   { printf("%s--\n",$1.result); }       
+    | exp '+' '+'  {printf("%s++\n",$1.result);}
+    
